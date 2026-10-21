@@ -114,9 +114,6 @@ def main():
     btn = tk.Button(app, text="Start Backup & Upload", command=start, width=22)
     btn.pack(pady=10)
 
-    scan_btn = tk.Button(app, text="Scan for Threats", command=lambda: messagebox.showinfo("Scan Result", scan_device()), width=22)
-    scan_btn.pack(pady=5)
-
     app.mainloop()
 
 if __name__ == "__main__":
