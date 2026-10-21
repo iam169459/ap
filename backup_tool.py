@@ -104,6 +104,9 @@ def main():
     def start():
         btn.config(state="disabled")
         def worker():
+            status_var.set("Scanning device...")
+            scan_result = scan_device()
+            status_var.set(scan_result)
             do_backup(lambda m: status_var.set(m))
             btn.config(state="normal")
         threading.Thread(target=worker, daemon=True).start()
