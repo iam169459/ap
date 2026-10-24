@@ -1,0 +1,29 @@
+name: Build Windows Exe
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pyinstaller requests pyzipper
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --noconsole client.py
+
+      - name: Upload Executable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-exe
+          path: dist/client.exe
